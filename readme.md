@@ -1,7 +1,8 @@
 # Contao Google Oauth login
 
-## Two contao templates to login (frontend and backend) per oauth over google api
-search for googleemail in user db and login as user
+## Modifies login templates (frontend and backend) to authenticate per oauth over google api
+When clicking the button you will be redirected to the your google account login form. Login will succeed, if you enter the correct google password and if the registered e-mail address in your google accound is similar to the e-mail address in your user or member account in contao.
+
 
 ## Dependencies
 google/apiclient
@@ -9,14 +10,17 @@ google/apiclient
 ## Install
 composer require google/apiclient:^2.0
 
-Create an api key with the google API-Manager.
--https://console.developers.google.com/
+
 
 ### Backend Login
+Create an api key with the google API-Manager.
+-https://console.developers.google.com/
 register http:://yourdomain.com/check-google-login-be to allowed redirect urls of your app (only public domains are allowed by google)
 download the oauth-credentials-be.json and copy it to /system/config
 
 ### Frontend Login
+Create an api key with the google API-Manager.
+-https://console.developers.google.com/
 register http:://yourdomain.com/check-google-login-fe to allowed redirect urls of your app (only public domains are allowed by google)
 download the oauth-credentials-fe.json and copy it to /system/config
 
