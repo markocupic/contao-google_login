@@ -112,7 +112,7 @@ class OauthFe
                 if (!$find)
                 {
                     //\Message::addError('no member with ' . $token_data['email'] . ' found');
-                    \Controller::redirect($GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_TO_ERROR_PAGE_ALIAS']);
+                    \Controller::redirect(self::generateUrl($GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_TO_ERROR_PAGE_ALIAS']));
                 }
                 else
                 {
@@ -126,11 +126,11 @@ class OauthFe
                     \Input::setPost('password', 'oauthpw');
                     if ($user->login())
                     {
-                        \Controller::redirect($GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_AFTER_LOGIN_ALIAS']);
+                        \Controller::redirect(self::generateUrl($GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_AFTER_LOGIN_ALIAS']));
                     }
                     else
                     {
-                        \Controller::redirect($GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_TO_ERROR_PAGE_ALIAS']);
+                        \Controller::redirect(self::generateUrl($GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_TO_ERROR_PAGE_ALIAS']));
                     }
                 }
             }
@@ -153,6 +153,25 @@ class OauthFe
 
         return false;
 
+    }
+
+
+    protected static function generateUrl($strPageAlias)
+    {
+        $objPage = \PageModel::findPublishedByIdOrAlias($strPageAlias);
+        if($objPage !== null){
+            $time = \Date::floorToMinute();
+
+            // The target page has not been published (see #5520)
+            if (($objPage->start != '' && $objPage->start > $time) || ($objPage->stop != '' && $objPage->stop <= ($time + 60)))
+            {
+                new \Exception('Tried to redirect to an unpublished page');
+            }
+            $url = $objPage->getAbsoluteUrl();
+            die($url);
+
+
+        }
     }
 
 }
