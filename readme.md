@@ -25,13 +25,16 @@ register http:://yourdomain.com/check-google-login-fe to allowed redirect urls o
 download the oauth-credentials-fe.json and copy it to /system/config
 
 
-#### Frontend login settings
-In system/config/localconfig.php you can overwrite some defaults which are defined in the config.php of the module.
-
+#### Frontend login settings config.php
+These defaults are defined in the config.php of the module.
+You can overwrite them in system/config/localconfig.php.
 
 ```php
 <?php
-    // Overwrite these defaults in system/config/localconfig.php
+    /** Overwrite these defaults in system/config/localconfig.php */
+    // Id or alias where contao will redirect after fe login has suceeded
     $GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_AFTER_LOGIN_ALIAS'] = 'login';
+
+    // Id or alias where contao has to redirect after a login error
     $GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_TO_ERROR_PAGE_ALIAS'] = 'error';
 ```

@@ -16,11 +16,16 @@ if ($_GET['code'])
 
 if (TL_MODE == 'FE')
 {
-    // Overwrite these default in system/config/localconfig.php
+    /** Overwrite these defaults in system/config/localconfig.php */
+    // Id or alias where contao will redirect after fe login has suceeded
     $GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_AFTER_LOGIN_ALIAS'] = 'login';
+
+    // Id or alias where contao has to redirect after a login error
     $GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_TO_ERROR_PAGE_ALIAS'] = 'error';
 }
 
+
+/** Hooks */
 $GLOBALS['TL_HOOKS']['parseBackendTemplate'][] = array('\Markocupic\GoogleLogin\Oauth', 'parseBackendTemplate');
 
 

@@ -117,7 +117,7 @@ class OauthFe
                 else
                 {
 
-                    //register hook
+                    // Register hook
                     $GLOBALS['TL_HOOKS']['importUser'][] = array('\Guave\GoogleLogin\OauthFe', 'importUser');
                     $GLOBALS['TL_HOOKS']['checkCredentials'][] = array('\Guave\GoogleLogin\OauthFe', 'importUser');
                     self::$user = $user;
@@ -155,23 +155,30 @@ class OauthFe
 
     }
 
-
-    protected static function generateUrl($strPageAlias)
+    /**
+     * @param $strPageAlias
+     * @return mixed|string
+     */
+    protected static function generateUrl($strPageAlias = '')
     {
-        $objPage = \PageModel::findPublishedByIdOrAlias($strPageAlias);
-        if($objPage !== null){
-            $time = \Date::floorToMinute();
+        if ($strPageAlias == '')
+        {
+            return '';
+        }
 
-            // The target page has not been published (see #5520)
-            if (($objPage->start != '' && $objPage->start > $time) || ($objPage->stop != '' && $objPage->stop <= ($time + 60)))
+        $objP = \PageModel::findPublishedByIdOrAlias($strPageAlias);
+        if ($objP !== null)
+        {
+
+            $objPage = \PageModel::findByPk($objP->id);
+            if ($objPage !== null)
             {
-                new \Exception('Tried to redirect to an unpublished page');
+                return $objPage->getFrontendUrl();
             }
-            $url = $objPage->getAbsoluteUrl();
-            die($url);
-
 
         }
+        new \Exception('Tried to redirect to an unpublished or inexistent page.');
+
     }
 
 }
