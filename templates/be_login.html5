@@ -78,7 +78,7 @@
                     </tr>
                 </table>
                 <div class="tl_login_submit_container">
-                    <input type="submit" name="login" id="login" class="tl_submit" value="<?= $this->loginButton ?>">{{br}}
+                    <input type="submit" name="login" id="login" class="tl_submit" value="<?= $this->loginButton ?>"><br>
                     <div class="google-oauth-button">
                         <?php
                         $oauth = \Guave\GoogleLogin\OauthBe::getInstance();
