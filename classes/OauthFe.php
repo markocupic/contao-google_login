@@ -20,8 +20,7 @@ class OauthFe
         $oauthCredis = self::getOAuthCredentialsFile();
         if (!$oauthCredis)
         {
-            echo 'oauth-credentials-fe.json file missing in system/config';
-            exit;
+            die('oauth-credentials-fe.json file missing in system/config');
         }
 
         $redirectUrl = 'http://' . $_SERVER['HTTP_HOST'] . '/check-google-login-fe';
@@ -113,7 +112,7 @@ class OauthFe
                 if (!$find)
                 {
                     //\Message::addError('no member with ' . $token_data['email'] . ' found');
-                    \Controller::redirect($GLOBALS['GOOGLE_FE_OAUTH']['REDIRECT_TO_ERROR_PAGE']);
+                    \Controller::redirect($GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_TO_ERROR_PAGE_ALIAS']);
                 }
                 else
                 {
@@ -127,11 +126,11 @@ class OauthFe
                     \Input::setPost('password', 'oauthpw');
                     if ($user->login())
                     {
-                        \Controller::redirect($GLOBALS['GOOGLE_FE_OAUTH']['REDIRECT_AFTER_LOGIN']);
+                        \Controller::redirect($GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_AFTER_LOGIN_ALIAS']);
                     }
                     else
                     {
-                        \Controller::redirect($GLOBALS['GOOGLE_FE_OAUTH']['REDIRECT_TO_ERROR_PAGE']);
+                        \Controller::redirect($GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_TO_ERROR_PAGE_ALIAS']);
                     }
                 }
             }

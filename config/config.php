@@ -17,9 +17,8 @@ if ($_GET['code'])
 if (TL_MODE == 'FE')
 {
     // Overwrite these default in system/config/localconfig.php
-    $GLOBALS['GOOGLE_FE_OAUTH']['LOGIN_PAGE_ALIAS'] = 'login';
-    $GLOBALS['GOOGLE_FE_OAUTH']['REDIRECT_AFTER_LOGIN'] = 'loginn';
-    $GLOBALS['GOOGLE_FE_OAUTH']['REDIRECT_TO_ERROR_PAGE'] = 'error';
+    $GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_AFTER_LOGIN_ALIAS'] = 'login';
+    $GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_TO_ERROR_PAGE_ALIAS'] = 'error';
 }
 
 $GLOBALS['TL_HOOKS']['parseBackendTemplate'][] = array('\Markocupic\GoogleLogin\Oauth', 'parseBackendTemplate');

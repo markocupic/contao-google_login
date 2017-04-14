@@ -12,16 +12,26 @@ composer require google/apiclient:^2.0
 
 
 
-### Backend Login
+### Backend login
 Create an api key with the google API-Manager.
 -https://console.developers.google.com/
 register http:://yourdomain.com/check-google-login-be to allowed redirect urls of your app (only public domains are allowed by google)
 download the oauth-credentials-be.json and copy it to /system/config
 
-### Frontend Login
+### Frontend login
 Create an api key with the google API-Manager.
 -https://console.developers.google.com/
 register http:://yourdomain.com/check-google-login-fe to allowed redirect urls of your app (only public domains are allowed by google)
 download the oauth-credentials-fe.json and copy it to /system/config
 
 
+#### Frontend login settings
+In system/config/localconfig.php you can overwrite some defaults which are defined in the config.php of the module.
+
+
+```php
+<?php
+    // Overwrite these defaults in system/config/localconfig.php
+    $GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_AFTER_LOGIN_ALIAS'] = 'login';
+    $GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_TO_ERROR_PAGE_ALIAS'] = 'error';
+```
