@@ -83,7 +83,7 @@
                     </div>
                     <div class="float_right">
                         <?php
-                        $oauth = \Guave\GoogleLogin\Oauth::getInstance();
+                        $oauth = \Guave\GoogleLogin\OauthBe::getInstance();
                         ?><br />
                         <a href="<?php echo $oauth->getOauthLinkForLogin(); ?>">
                             <img width="200" src="/system/modules/google_login/assets/sign-in-with-google.png" alt="google login">

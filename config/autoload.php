@@ -3,12 +3,20 @@
 /**
  * Contao Open Source CMS
  *
- * Copyright (c) 2005-2016 Leo Feyer
+ * Copyright (c) 2005-2017 Leo Feyer
  *
  * @license LGPL-3.0+
  */
 
-//NamespaceClassLoader::add('Guave', 'system/modules/google_login/library/');
+
+/**
+ * Register the namespaces
+ */
+ClassLoader::addNamespaces(array
+(
+	'Guave',
+));
+
 
 /**
  * Register the classes
@@ -16,8 +24,8 @@
 ClassLoader::addClasses(array
 (
 	// Classes
-	'Guave\GoogleLogin\Oauth'      => 'system/modules/google_login/classes/Oauth.php',
-
+	'Guave\GoogleLogin\OauthFe'  => 'system/modules/google_login/classes/OauthFe.php',
+	'Guave\GoogleLogin\OauthBe'  => 'system/modules/google_login/classes/OauthBe.php',
 ));
 
 
@@ -26,5 +34,6 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'be_login'        => 'system/modules/google_login/templates',
+	'be_login'             => 'system/modules/google_login/templates',
+	'mod_login_1cl'        => 'system/modules/google_login/templates',
 ));
