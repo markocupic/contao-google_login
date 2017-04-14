@@ -21,12 +21,13 @@
   },
   "require": {
     "php": ">=5.3",
+    "contao-community-alliance/composer-plugin": "~2.0",
     "google/apiclient": "^2.0"
   },
   "extra": {
     "contao": {
       "sources": {
-        "": "system/modules/google_login"
+        "contao": "system/modules/google_login"
       }
     }
   }
