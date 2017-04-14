@@ -22,4 +22,6 @@ if (TL_MODE == 'FE')
     $GLOBALS['GOOGLE_FE_OAUTH']['REDIRECT_TO_ERROR_PAGE'] = 'error';
 }
 
+$GLOBALS['TL_HOOKS']['parseBackendTemplate'][] = array('\Markocupic\GoogleLogin\Oauth', 'parseBackendTemplate');
+
 

@@ -34,6 +34,6 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'be_login'             => 'system/modules/google_login/templates',
+	//'be_login'             => 'system/modules/google_login/templates',
 	'mod_login_1cl'        => 'system/modules/google_login/templates',
 ));
