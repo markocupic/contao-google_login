@@ -22,14 +22,7 @@ class Oauth
     {
         if ($strTemplate == 'be_login')
         {
-            $strBtn = '
-                <div class="google-oauth-button">
-                    <a href="%s">
-                        <img width="200" src="system/modules/google_login/assets/sign-in-with-google.png" alt="google login">
-                    </a>
-                </div>
-            ';
-
+            $strBtn = '<div class="google-oauth-button"><a href="%s"><img width="200" src="system/modules/google_login/assets/sign-in-with-google.png" alt="google login"></a></div>';
             $oauth = \Guave\GoogleLogin\OauthBe::getInstance();
             $strBtn = sprintf($strBtn, $oauth->getOauthLinkForLogin());
 
