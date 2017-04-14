@@ -15,6 +15,7 @@
 ClassLoader::addNamespaces(array
 (
 	'Guave',
+    'Markocupic',
 ));
 
 
@@ -26,6 +27,7 @@ ClassLoader::addClasses(array
 	// Classes
 	'Guave\GoogleLogin\OauthFe'  => 'system/modules/google_login/classes/OauthFe.php',
 	'Guave\GoogleLogin\OauthBe'  => 'system/modules/google_login/classes/OauthBe.php',
+    'Markocupic\GoogleLogin\Oauth'  => 'system/modules/google_login/classes/Oauth.php',
 ));
 
 
