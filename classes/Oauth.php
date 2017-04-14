@@ -13,7 +13,7 @@ class Oauth
 {
 
     /**
-     * Add google login button to be_login template
+     * Inject google login button to be_login template
      * @param $strContent
      * @param $strTemplate
      * @return mixed
@@ -33,7 +33,7 @@ class Oauth
             $oauth = \Guave\GoogleLogin\OauthBe::getInstance();
             $strBtn = sprintf($strBtn, $oauth->getOauthLinkForLogin());
 
-            $strContent = preg_replace('/<input type=\"submit\" name=\"login\" id=\"login\" class=\"tl_submit\" value=\"(.*?)\">/', '<input type="submit" name="login" id="login" class="tl_submit" value="${1}">' . $strBtn, $strContent);
+            $strContent = preg_replace('/<input type=\"submit\"(.*?)>/', '<input type="submit"${1}>' . $strBtn, $strContent);
         }
 
         return $strContent;
