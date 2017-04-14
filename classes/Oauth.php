@@ -33,7 +33,7 @@ class Oauth
             $oauth = \Guave\GoogleLogin\OauthBe::getInstance();
             $strBtn = sprintf($strBtn, $oauth->getOauthLinkForLogin());
 
-            $strContent = preg_replace('/<input type=\"submit\"(.*?)>/', '<input type="submit"${1}>' . $strBtn, $strContent);
+            $strContent = preg_replace('/<input(.*?)type=\"submit\"(.*?)name=\"login\"(.*?)>/', '<input${1}type="submit"${2}name="login"${3}>' . $strBtn, $strContent);
         }
 
         return $strContent;
