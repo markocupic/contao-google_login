@@ -15,7 +15,18 @@ class OauthBe
     protected function __construct()
     {
 
+        if (isset($_GET['code']))
+        {
+            if (!BE_USER_LOGGED_IN)
+            {
+                unset($_SESSION['oauth_be']['access_token']);
+            }
+        }
+
         JWT::$leeway = 1;
+
+
+
 
         $oauthCredis = self::getOAuthCredentialsFile();
         if (!$oauthCredis)
@@ -29,11 +40,17 @@ class OauthBe
         $client = new \Google_Client();
         $client->setAuthConfig($oauthCredis);
         $client->setRedirectUri($redirectUrl);
+
+        // Add scopes
+        // https://developers.google.com/+/web/api/rest/oauth#login-scopes
+        $client->addScope('openid');
+        $client->addScope('profile');
         $client->addScope('email');
 
-        if ($_SESSION['oauth']['access_token'])
+
+        if ($_SESSION['oauth_be']['access_token'])
         {
-            $client->setAccessToken($_SESSION['oauth']['access_token']);
+            $client->setAccessToken($_SESSION['oauth_be']['access_token']);
         }
 
         self::$client = $client;
@@ -76,6 +93,7 @@ class OauthBe
     public static function getOauthLinkForLogin()
     {
 
+        unset($_SESSION['oauth_be']['access_token']);
         $client = self::$client;
         return $client->createAuthUrl();
 
@@ -92,12 +110,11 @@ class OauthBe
         {
 
             $client = self::$client;
-
             if (isset($_GET['code']))
             {
                 $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
                 $client->setAccessToken($token);
-                $_SESSION['oauth']['access_token'] = $token;
+                $_SESSION['oauth_be']['access_token'] = $token;
             }
 
             if ($client->getAccessToken())

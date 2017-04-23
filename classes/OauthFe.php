@@ -28,11 +28,14 @@ class OauthFe
         $client = new \Google_Client();
         $client->setAuthConfig($oauthCredis);
         $client->setRedirectUri($redirectUrl);
+        // Add scopes
+        // https://developers.google.com/+/web/api/rest/oauth#login-scopes
+        $client->addScope('openid');
+        $client->addScope('profile');
         $client->addScope('email');
-
-        if ($_SESSION['oauth']['access_token'])
+        if ($_SESSION['oauth_fe']['access_token'])
         {
-            $client->setAccessToken($_SESSION['oauth']['access_token']);
+            $client->setAccessToken($_SESSION['oauth_fe']['access_token']);
         }
 
         self::$client = $client;
@@ -74,7 +77,7 @@ class OauthFe
 
     public static function getOauthLinkForLogin()
     {
-
+        unset($_SESSION['oauth_fe']['access_token']);
         $client = self::$client;
         return $client->createAuthUrl();
 
@@ -96,7 +99,7 @@ class OauthFe
             {
                 $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
                 $client->setAccessToken($token);
-                $_SESSION['oauth']['access_token'] = $token;
+                $_SESSION['oauth_fe']['access_token'] = $token;
             }
 
             if ($client->getAccessToken())
