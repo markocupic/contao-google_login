@@ -25,9 +25,6 @@ class OauthBe
 
         JWT::$leeway = 1;
 
-
-
-
         $oauthCredis = self::getOAuthCredentialsFile();
         if (!$oauthCredis)
         {

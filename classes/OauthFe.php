@@ -14,6 +14,13 @@ class OauthFe
 
     protected function __construct()
     {
+        if (isset($_GET['code']))
+        {
+            if (!BE_USER_LOGGED_IN)
+            {
+                unset($_SESSION['oauth_be']['access_token']);
+            }
+        }
 
         JWT::$leeway = 1;
 
