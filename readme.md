@@ -38,3 +38,6 @@ You can overwrite them in system/config/localconfig.php.
     // Id or alias where contao has to redirect after a login error
     $GLOBALS['GOOGLE_FE_OAUTH']['FE_REDIRECT_TO_ERROR_PAGE_ALIAS'] = 'error';
 ```
+
+#### Howto for developers
+http://www.binarytides.com/php-code-google-openid-login/
